@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Optimize Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .box {
+            background: rgba(0,0,0,0.6);
+            padding: 30px;
+            border-radius: 12px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0,255,255,0.4);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #00c6ff;
+            color: black;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #00ffd5;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .status {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #00ffcc;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box" id="loginBox">
+    <h2>🔒 Nhập mật khẩu</h2>
+    <input type="password" id="password" placeholder="Mật khẩu">
+    <button onclick="login()">Đăng nhập</button>
+    <p id="error" style="color:red;"></p>
+</div>
+
+<div class="box hidden" id="toolBox">
+    <h2>⚙ Optimize Tool</h2>
+
+    <button onclick="runTool('Optimize Device')">Optimize Device</button>
+    <button onclick="runTool('Smooth FPS')">Smooth FPS</button>
+    <button onclick="runTool('Sensi')">Sensi</button>
+
+    <div class="status" id="status"></div>
+</div>
+
+<script>
+    const correctPassword = "tranghai-108";
+
+    function login() {
+        const pass = document.getElementById("password").value;
+        if (pass === correctPassword) {
+            document.getElementById("loginBox").classList.add("hidden");
+            document.getElementById("toolBox").classList.remove("hidden");
+        } else {
+            document.getElementById("error").innerText = "❌ Sai mật khẩu!";
+        }
+    }
+
+    function runTool(name) {
+        const status = document.getElementById("status");
+        status.innerText = "⏳ Đang chạy " + name + "...";
+
+        setTimeout(() => {
+            status.innerText = "✅ " + name + " đã hoàn tất!";
+        }, 1500);
+    }
+</script>
+
+</body>
+</html>
